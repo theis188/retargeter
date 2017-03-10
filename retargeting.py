@@ -25,9 +25,9 @@ class Retargeter(object):
 		ret[:,0,:] = ret[:,1,:]
 		return ret
 	def _Deriv(self,im=None):
-		if not im is not None:
+		if im is None:
 			im = self.im
-		vert = self._DCDX(im)
+		vert = self._DCDY(im)
 		horiz = self._DCDX(im)
 		return ((vert+horiz) / 2.)
 	def _GetSubDim(self,crop_shape):
