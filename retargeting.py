@@ -55,13 +55,12 @@ class Retargeter(object):
 		offset = [0,0]
 		max_sum = 0
 		max_coord = 0
-		sums = []
+		ax_sum = np.sum( np.sum(self.ders, axis=(1-ind) ), axis=1)
 		for i in range(windows):
 			ys,xs = offset
 			xe = xs + self.sub_dim[1]
 			ye = ys + self.sub_dim[0]
-			curr_sum = np.sum( self.ders[ ys:ye , xs:xe , : ] )
-			sums.append(curr_sum)
+			curr_sum = np.sum( ax_sum[ ys:ye ] ) if ind==0 else np.sum(ax_sum[ xs:xe ])
 			if curr_sum > max_sum:
 				max_sum = curr_sum
 				box = (xs,xe,ys,ye)
